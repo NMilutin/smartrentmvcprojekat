@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SmartRent.Models.Automobil>
+
+@{
+    ViewBag.Title = "Ponuda Vozila";
+}
+
+<h2>Ponuda Vozila</h2>
+
+@using (Html.BeginForm("Vozila","Home",FormMethod.Get,new { @class = "d-flex gap-xl-4" }))
+{
+    <input class="form-control" type="search" placeholder="Pretraga" name="s"/>
+    <input class="btn btn-primary" type="submit" value="Pretrazi"/>
+}
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            Proizvodjac
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Godiste
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gorivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Karoserija)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Snaga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zapremina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Boja)
+        </th>
+        <th>
+            Cena po danu
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img class="d-block" src="@item.ImgPath" alt="slika vozila"/>
+        </td>
+        <td>
+            @(item.Model.Marka.Naziv)
+        </td>
+        <td>
+            @(item.Model.NazivModela)
+        </td>
+        <td>
+            @(item.Model.Godina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gorivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Karoserija)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Snaga) KS
+        </td>
+        <td>
+            @(((double)item.Zapremina / 1000).ToString("N1"))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menjac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Boja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CenaZaDan) €
+        </td>
+        <td>
+            @Html.ActionLink("Iznajmi", "Details", new { id=item.Id }, new { @class = "btn btn-primary"})
+        </td>
+    </tr>
+}
+
+</table>
+
+<style>
+    img {
+        object-fit: cover;
+        width: 200px;
+        height: 120px;
+    }
+
+    .container {
+        margin: 1rem;
+    }
+</style>

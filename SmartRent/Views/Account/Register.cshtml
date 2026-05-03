@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div class="mb3">
+        <label>
+            Korisnicko ime
+            <input class="form-control" name="username" />
+        </label>
+    </div>
+    <div class="mb3">
+        <label>
+            Lozinka
+            <input class="form-control" type="password" name="lozinka" />
+        </label>
+    </div>
+    <div class="mb3">
+        <label>
+            Ponovi lozinku
+            <input class="form-control" type="password" name="ponovi" />
+        </label>
+    </div>
+    <div class="mb3">
+        <label>
+            Ime
+            <input class="form-control" name="ime" />
+        </label>
+    </div>
+    <div class="mb3">
+        <label>
+            Prezime
+            <input class="form-control" name="prezime" />
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Prijavi se</button>
+    <p class="alert-danger">@ViewBag.Message</p>
+    <p>Imas nalog? @Html.ActionLink("Uloguj se", "Register")</p>
+}

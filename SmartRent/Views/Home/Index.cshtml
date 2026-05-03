@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main class="d-flex flex-column align-items-center w-100">
+    <div class="carousel slide w-100" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Content/Img/slika1.jpg" alt="automobil" class="d-block w-100" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Img/slika2.jpg" alt="automobil" class="d-block w-100" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Img/slika3.jpg" alt="automobil" class="d-block w-100" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Img/slika4.jpg" alt="automobil" class="d-block w-100" />
+            </div>
+        </div>
+    </div> 
+    <h1 class="text-center fw-bold mt-4">SmartRent</h1>
+    <p class="text-center">Iznajmljivanje vozila - bilo gde, bilo kad</p>
+    @Html.ActionLink("Iznajmi Vozilo", "Vozila", "Home",new {area = ""},new { @class = "btn btn-primary btn-lg"})
+</main>
+
+<style>
+    img {
+        object-fit: cover;
+        height: 30rem;
+    }
+</style>

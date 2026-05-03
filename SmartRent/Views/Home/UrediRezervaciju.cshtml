@@ -1,0 +1,50 @@
+﻿@model SmartRent.Models.Iznajmljivanje
+
+@{
+    ViewBag.Title = "Uredjivanje Rezervacije";
+
+    string dateToStr(DateTime date)
+    {
+        return $"{date.Year}-{date.Month.ToString().PadLeft(2,'0')}-{date.Day.ToString().PadLeft(2, '0')}";
+    }
+}
+
+<h2>Uredjivanje rezervacije</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>@Model.Automobil.ToString()</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            Datum iznajmljivanja
+            <div class="col-md-10">
+                <input type="date" name="pocetak" value=@dateToStr(Model.DatumIznajmljivanja) class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            Datum vracanja
+            <div class="col-md-10">
+                <input type="date" name="kraj" value=@dateToStr(Model.DatumVracanja) class="form-control" />
+            </div>
+        </div>
+
+        <p>@ViewBag.Message</p>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Sacuvaj" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad na listu", "Rezervacije")
+</div>

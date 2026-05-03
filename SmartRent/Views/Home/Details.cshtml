@@ -1,0 +1,99 @@
+﻿@model SmartRent.Models.Automobil
+
+@{
+    ViewBag.Title = $"{Model.Model.Marka.Naziv} {Model.Model.NazivModela}";
+}
+
+<h2>Iznajmljivanje Vozila</h2>
+
+<div>
+    <h4>@($"{Model.Model.Marka.Naziv} {Model.Model.NazivModela} {Model.Model.Godina}")</h4>
+    <hr />
+    <div class="d-flex container body-content gap-xl-5">
+        <dl class="dl-horizontal">
+            <div>
+                <img src="@Model.ImgPath" alt="slika automobila"/>
+            </div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gorivo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gorivo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Karoserija)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Karoserija)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Snaga)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Snaga) KS
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Zapremina)
+            </dt>
+
+            <dd>
+                @(((double)Model.Zapremina / 1000).ToString("N1"))
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Boja)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Boja)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Menjac)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Menjac)
+            </dd>
+
+            <dt>
+                Cena po danu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CenaZaDan) €
+            </dd>
+        </dl>
+        @using (Html.BeginForm("Details", "Home", FormMethod.Post))
+        {
+            <div class="mb-3">
+                <label for="dateStart">Pocetak</label>
+                <input id="dateStart" type="date" name="pocetak" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="dateEnd">Kraj</label>
+                <input id="dateEnd" type="date" name="kraj" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Iznajmi Vozilo</button>
+        }
+     </div>
+</div>
+<p>@ViewBag.Message</p>
+<p>
+    @Html.ActionLink("Idi Nazad", "Vozila")
+</p>
+
+<style>
+    img {
+        display: block;
+        width: 300px;
+        height: 170px;
+        object-fit: cover;
+    }
+</style>
